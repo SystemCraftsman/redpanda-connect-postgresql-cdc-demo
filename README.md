@@ -1,0 +1,1 @@
+# redpanda-connect-postgresql-cdc-demo
