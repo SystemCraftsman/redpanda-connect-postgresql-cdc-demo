@@ -1,0 +1,22 @@
+input:
+  label: "cdc"
+  postgres_cdc:
+    dsn: postgres://cdc_user:password@localhost:5432/retail_db?sslmode=disable
+    stream_snapshot: true
+    schema: public
+    tables:
+      - inventory
+    temporary_slot: true
+
+output:
+  kafka_franz:
+    seed_brokers:
+      - YOUR_REDPANDA_SERVERLESS_BROKER_ADDRESS
+    topic: inventory
+    tls:
+      enabled: true
+      skip_cert_verify: true
+    sasl:
+      - mechanism: SCRAM-SHA-512
+        password: YOUR_REDPANDA_SERVERLESS_PASSWORD
+        username: YOUR_REDPANDA_SERVERLESS_USERNAME
